@@ -1,0 +1,31 @@
+{
+  "name": "bank-atm-simulator",
+  "version": "1.0.0",
+  "description": "Programa para simulação de acessos a caixas eletronicas de bancos",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JnksDavu/Bank-ATM-simulator.git"
+  },
+  "keywords": [
+    "Da.1596753258"
+  ],
+  "author": "davi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JnksDavu/Bank-ATM-simulator/issues"
+  },
+  "homepage": "https://github.com/JnksDavu/Bank-ATM-simulator#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.5",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
