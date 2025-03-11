@@ -4,8 +4,9 @@
   "description": "Programa para simulação de acessos a caixas eletronicas de bancos",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.ts",
+    "dev": "concurrently \"npm run dev-back\" \"npm run dev-front\"",
+    "dev-back": "nodemon src/server.ts",
+    "dev-front": "cd ../Front-End/bankatm && npm start",
     "build": "tsc"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.10",
+    "concurrently": "^9.1.2",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
@@ -33,6 +35,8 @@
     "bank-atm-simulator": "file:",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
   }
 }
