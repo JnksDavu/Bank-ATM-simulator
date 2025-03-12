@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { getSessionKeyMap, createSession, validateSession } from './services/sessionService';
 
 interface KeyboardProps {
-  sessionId: string;
+  userId: string;
 }
 
 interface ButtonPair {
@@ -9,31 +10,52 @@ interface ButtonPair {
   second: string;
 }
 
-const Keyboard: React.FC<KeyboardProps> = ({ sessionId }) => {
+const Keyboard: React.FC<KeyboardProps> = ({ userId }) => {
   const [buttonPairs, setButtonPairs] = useState<ButtonPair[]>([]);
   const [clickedButtons, setClickedButtons] = useState<string[]>([]);
+  const [sessionId, setSessionId] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulação de obtenção do teclado a partir do ID de sessão
-    const pairs: ButtonPair[] = [
-      { first: '0', second: '1' },
-      { first: '9', second: '3' },
-      { first: '5', second: '7' },
-      { first: '6', second: '8' },
-      { first: '2', second: '4' },
-    ];
+    const initializeSession = async () => {
+      try {
+        const newSessionId = await createSession(userId);
+        setSessionId(newSessionId);
+        const pairs = await getSessionKeyMap(newSessionId);
+        setButtonPairs(pairs);
+      } catch (error) {
+        console.error("Erro ao inicializar a sessão:", error);
+      }
+    };
 
-    // Em um caso real, o ID de sessão seria usado para garantir que a ordem dos botões seja única
-    setButtonPairs(pairs);
-  }, [sessionId]);
+    if (!sessionId) {
+      initializeSession();
+    }
+  }, [userId, sessionId]);
 
-  const handleButtonClick = (button: string) => {
-    setClickedButtons([...clickedButtons, button]);
+  const handleButtonClick = (pair: ButtonPair) => {
+    if (clickedButtons.length < 8) {
+      setClickedButtons([...clickedButtons, pair.first, pair.second]);
+    }
   };
 
-  const handleSubmit = () => {
+  const handleReset = () => {
+    setClickedButtons([]);
+  };
+
+  const handleSubmit = async () => {
     console.log("Ordem dos botões clicados:", clickedButtons);
-    // Aqui você pode enviar os dados para validação no backend
+    if (sessionId) {
+      try {
+        const isValid = await validateSession(sessionId, clickedButtons);
+        if (isValid) {
+          alert("Senha válida!");
+        } else {
+          alert("Senha inválida!");
+        }
+      } catch (error) {
+        console.error("Erro ao validar a sessão:", error);
+      }
+    }
   };
 
   return (
@@ -41,15 +63,19 @@ const Keyboard: React.FC<KeyboardProps> = ({ sessionId }) => {
       {buttonPairs.map((pair, index) => (
         <div key={index} className="button-row">
           <button
-            onClick={() => handleButtonClick(pair.first)}
+            onClick={() => handleButtonClick(pair)}
             className="key-button"
+            disabled={clickedButtons.length >= 8}
           >
             {pair.first} / {pair.second}
           </button>
         </div>
       ))}
-      <button className="submit-button" onClick={handleSubmit}>
+      <button className="submit-button" onClick={handleSubmit} disabled={clickedButtons.length < 8}>
         Submeter
+      </button>
+      <button className="reset-button" onClick={handleReset}>
+        Resetar
       </button>
     </div>
   );
