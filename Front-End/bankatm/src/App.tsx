@@ -1,32 +1,51 @@
-
-import './Style/style.css'
-
-import React, { useState, useEffect } from 'react';
+import './Style/style.css';
+import React, { useState } from 'react';
 import Keyboard from './Keyboard';
-import { createSession } from './services/sessionService';
 
 const App: React.FC = () => {
+  const [userId, setUserId] = useState<string>('');
   const [sessionId, setSessionId] = useState<string | null>(null);
-  const userId = '2'; // Substitua pelo ID do usuário real
 
-  useEffect(() => {
-    const initializeSession = async () => {
-      try {
-        const newSessionId = await createSession(userId);
-        setSessionId(newSessionId);
-      } catch (error) {
-        console.error("Erro ao criar sessão:", error);
-      }
-    };
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserId(event.target.value);
+  };
 
-    initializeSession();
-  }, [userId]);
+  const handleStartSession = async () => {
+    if (userId) {
+      setSessionId(userId);
+    } else {
+      alert("Por favor, insira um nome de usuário.");
+    }
+  };
+
+  const handleBack = () => {
+    setSessionId(null);
+    setUserId('');
+  };
 
   return (
     <div className="app-container">
-      <h1>Digite a Senha</h1>
-      <p>Seu teclado está pronto. Clique nos botões na ordem correta!</p>
-      {sessionId && <Keyboard userId={userId} />}
+      {!sessionId ? (
+        <>
+          <h1>Escolha um usuário para logar</h1>
+          <input
+            type="text"
+            placeholder="Digite o nome de usuário"
+            value={userId}
+            onChange={handleInputChange}
+          />
+          <button onClick={handleStartSession}>Iniciar Sessão</button>
+        </>
+      ) : (
+        <>
+          <div className="header">
+            <h1>Digite a Senha</h1>
+            <button className="back-button" onClick={handleBack}>Voltar</button>
+          </div>
+          <p>Seu teclado está pronto. Clique nos botões na ordem correta!</p>
+          <Keyboard userId={sessionId} />
+        </>
+      )}
     </div>
   );
 };

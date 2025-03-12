@@ -50,8 +50,19 @@
     background-color: #0056b3;
   }
   
-  .submit-button {
+  /* Estilo do campo de entrada da senha */
+  .password-input {
     grid-column: span 2;
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* Estilo dos botões */
+  .submit-button {
     padding: 10px 20px;
     font-size: 18px;
     background-color: #28a745;
@@ -67,3 +78,50 @@
     background-color: #218838;
   }
   
+  .reset-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .reset-button:hover {
+    background-color: #e0a800;
+  }
+  
+  /* Estilo para alinhar os botões lado a lado */
+  .button-container {
+    grid-column: span 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  /* Estilo do botão Voltar */
+  .back-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .back-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Estilo do cabeçalho */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }

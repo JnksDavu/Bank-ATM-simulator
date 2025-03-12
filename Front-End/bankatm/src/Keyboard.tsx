@@ -15,18 +15,19 @@ const Keyboard: React.FC<KeyboardProps> = ({ userId }) => {
   const [clickedButtons, setClickedButtons] = useState<string[]>([]);
   const [sessionId, setSessionId] = useState<string | null>(null);
 
-  useEffect(() => {
-    const initializeSession = async () => {
-      try {
-        const newSessionId = await createSession(userId);
-        setSessionId(newSessionId);
-        const pairs = await getSessionKeyMap(newSessionId);
-        setButtonPairs(pairs);
-      } catch (error) {
-        console.error("Erro ao inicializar a sessão:", error);
-      }
-    };
+  const initializeSession = async () => {
+    try {
+      const newSessionId = await createSession(userId);
+      setSessionId(newSessionId);
+      const pairs = await getSessionKeyMap(newSessionId);
+      setButtonPairs(pairs);
+      setClickedButtons([]);
+    } catch (error) {
+      console.error("Erro ao inicializar a sessão:", error);
+    }
+  };
 
+  useEffect(() => {
     if (!sessionId) {
       initializeSession();
     }
@@ -39,14 +40,14 @@ const Keyboard: React.FC<KeyboardProps> = ({ userId }) => {
   };
 
   const handleReset = () => {
-    setClickedButtons([]);
+    initializeSession();
   };
 
   const handleSubmit = async () => {
     console.log("Ordem dos botões clicados:", clickedButtons);
     if (sessionId) {
       try {
-        const isValid = await validateSession(sessionId, clickedButtons);
+        const isValid = await validateSession(sessionId, clickedButtons, userId);
         if (isValid) {
           alert("Senha válida!");
         } else {
@@ -55,6 +56,7 @@ const Keyboard: React.FC<KeyboardProps> = ({ userId }) => {
       } catch (error) {
         console.error("Erro ao validar a sessão:", error);
       }
+      initializeSession();
     }
   };
 
@@ -71,12 +73,21 @@ const Keyboard: React.FC<KeyboardProps> = ({ userId }) => {
           </button>
         </div>
       ))}
-      <button className="submit-button" onClick={handleSubmit} disabled={clickedButtons.length < 8}>
-        Submeter
-      </button>
-      <button className="reset-button" onClick={handleReset}>
-        Resetar
-      </button>
+      <input
+        type="password"
+        value={clickedButtons.join('')}
+        readOnly
+        placeholder="Senha"
+        className="password-input"
+      />
+      <div className="button-container">
+        <button className="submit-button" onClick={handleSubmit} disabled={clickedButtons.length < 8}>
+          Submeter
+        </button>
+        <button className="reset-button" onClick={handleReset}>
+          Resetar
+        </button>
+      </div>
     </div>
   );
 };

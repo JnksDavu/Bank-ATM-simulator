@@ -93,7 +93,7 @@ export async function getSessionKeyMap(req: Request, res: Response) {
 
 export async function validateSession(req: Request, res: Response) {
   const { sessionId } = req.params;
-  const { clickedButtons }: { clickedButtons: string[] } = req.body;
+  const { clickedButtons, username }: { clickedButtons: string[], username: string } = req.body;
 
   try {
     const db = await openDb();
@@ -103,7 +103,7 @@ export async function validateSession(req: Request, res: Response) {
       return res.status(404).json({ error: "Sessão não encontrada" });
     }
 
-    const user = await db.get("SELECT password_hash FROM users WHERE id = ?", [session.user_id]);
+    const user = await db.get("SELECT password_hash FROM users WHERE username = ?", [username]);
 
     if (!user) {
       return res.status(404).json({ error: "Usuário não encontrado" });
