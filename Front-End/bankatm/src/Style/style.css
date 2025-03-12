@@ -1,127 +1,215 @@
 /* Estilos Gerais */
 .app-container {
-    text-align: center;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    max-width: 400px;
-    margin: 50px auto;
-  }
-  
-  h1 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  p {
-    color: #666;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
-  /* Estilo do Teclado */
-  .keyboard {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    justify-items: center;
-  }
-  
-  .button-row {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .key-button {
-    padding: 20px;
-    font-size: 18px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .key-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Estilo do campo de entrada da senha */
-  .password-input {
-    grid-column: span 2;
-    padding: 10px;
-    font-size: 18px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  /* Estilo dos botões */
-  .submit-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-  }
-  
-  .submit-button:hover {
-    background-color: #218838;
-  }
-  
-  .reset-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #ffc107;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-  }
-  
-  .reset-button:hover {
-    background-color: #e0a800;
-  }
-  
-  /* Estilo para alinhar os botões lado a lado */
-  .button-container {
-    grid-column: span 2;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  
-  /* Estilo do botão Voltar */
-  .back-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-left: 20px;
-    transition: background-color 0.3s;
-  }
-  
-  .back-button:hover {
-    background-color: #c82333;
-  }
-  
-  /* Estilo do cabeçalho */
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  text-align: center;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Estilo do Teclado */
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  justify-items: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.key-button {
+  padding: 20px;
+  font-size: 18px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.key-button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo do campo de entrada da senha */
+.password-input {
+  grid-column: span 2;
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Estilo dos botões */
+.start-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.start-button:hover {
+  background-color: #218838;
+}
+
+.create-user-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.create-user-button:hover {
+  background-color: #138496;
+}
+
+.reset-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #ffc107;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.reset-button:hover {
+  background-color: #e0a800;
+}
+
+/* Estilo para alinhar os botões lado a lado */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Estilo do botão Voltar */
+.back-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 20px;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #c82333;
+}
+
+/* Estilo do cabeçalho */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Estilo do formulário de criação de usuário */
+.create-user-container {
+  text-align: center;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+.create-user-container h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.create-user-container .form-group {
+  margin-bottom: 20px;
+}
+
+.create-user-container .form-group label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.create-user-container .form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.create-user-container .create-user-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-user-container .create-user-button:hover {
+  background-color: #138496;
+}
+
+.create-user-container .start-session-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.create-user-container .start-session-button:hover {
+  background-color: #218838;
+}
+
+.create-user-container .message {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+}

@@ -1,10 +1,12 @@
 import './Style/style.css';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Keyboard from './Keyboard';
 
 const App: React.FC = () => {
   const [userId, setUserId] = useState<string>('');
   const [sessionId, setSessionId] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserId(event.target.value);
@@ -23,6 +25,10 @@ const App: React.FC = () => {
     setUserId('');
   };
 
+  const handleCreateUser = () => {
+    navigate('/create-user');
+  };
+
   return (
     <div className="app-container">
       {!sessionId ? (
@@ -34,7 +40,10 @@ const App: React.FC = () => {
             value={userId}
             onChange={handleInputChange}
           />
-          <button onClick={handleStartSession}>Iniciar Sessão</button>
+          <div className="button-container">
+            <button className="start-button" onClick={handleStartSession}>Iniciar Sessão</button>
+            <button className="create-user-button" onClick={handleCreateUser}>Criar Usuário</button>
+          </div>
         </>
       ) : (
         <>
@@ -44,6 +53,7 @@ const App: React.FC = () => {
           </div>
           <p>Seu teclado está pronto. Clique nos botões na ordem correta!</p>
           <Keyboard userId={sessionId} />
+          <button className="create-user-button" onClick={handleCreateUser}>Criar Usuário</button>
         </>
       )}
     </div>
