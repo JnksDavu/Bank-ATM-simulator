@@ -25,14 +25,13 @@ export const createUser = async (req: Request, res: Response) => {
 
     // Validar a senha (deve ter 4 dígitos)
     if (!validatePassword(password)) {
-      return res.status(400).json({ message: "A senha deve conter exatamente 4 dígitos e conter apenas números!" });
+      return res.status(405).json({ message: "A senha deve conter exatamente 4 dígitos e conter apenas números!" });
     }
 
     // Gerar hash da senha para segurança
-    const passwordHash = await bcrypt.hash(password, 10);
 
     // Inserir o usuário no banco de dados
-    await db.run("INSERT INTO users (username, password_hash) VALUES (?, ?)", [username, passwordHash]);
+    await db.run("INSERT INTO users (username, password_hash) VALUES (?, ?)", [username, password]);
 
     return res.status(201).json({ message: "Usuário criado com sucesso!" });
   } catch (error) {
