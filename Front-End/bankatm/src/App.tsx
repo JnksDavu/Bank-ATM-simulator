@@ -2,6 +2,7 @@ import './Style/style.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Keyboard from './Keyboard';
+import { checkUserExists } from './services/userService';
 
 const App: React.FC = () => {
   const [userId, setUserId] = useState<string>('');
@@ -14,12 +15,22 @@ const App: React.FC = () => {
 
   const handleStartSession = async () => {
     if (userId) {
-      setSessionId(userId);
+      try {
+        const userExists = await checkUserExists(userId);
+        if (userExists) {
+          setSessionId(userId);
+        } else {
+          alert("Nome de usuário não encontrado.");
+        }
+      } catch (error) {
+        alert("Erro ao verificar usuário. Tente novamente.");
+        console.error('Erro ao verificar usuário:', error);
+      }
     } else {
       alert("Por favor, insira um nome de usuário.");
     }
   };
-
+  
   const handleBack = () => {
     setSessionId(null);
     setUserId('');
@@ -39,6 +50,7 @@ const App: React.FC = () => {
             placeholder="Digite o nome de usuário"
             value={userId}
             onChange={handleInputChange}
+            className="user-input"
           />
           <div className="button-container">
             <button className="start-button" onClick={handleStartSession}>Iniciar Sessão</button>

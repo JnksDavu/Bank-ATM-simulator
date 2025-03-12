@@ -84,11 +84,13 @@ const Keyboard: React.FC<KeyboardProps> = ({ userId }) => {
         <button className="submit-button" onClick={handleSubmit} disabled={clickedButtons.length < 8}>
           Submeter
         </button>
-        <button className="reset-button" onClick={handleReset}>
+        
+      </div>
+      <button className="reset-button" onClick={handleReset}>
           Resetar
         </button>
-      </div>
     </div>
+    
   );
 };
 

@@ -9,6 +9,22 @@
   margin: 50px auto;
 }
 
+
+.submit-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #218838;
+}
 h1 {
   color: #333;
   font-size: 24px;
@@ -94,6 +110,27 @@ p {
   background-color: #138496;
 }
 
+/* Estilo do campo de entrada da senha */
+.password-input {
+  grid-column: span 2;
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.user-input {
+  grid-column: span 2;
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+}
+
 .reset-button {
   padding: 10px 20px;
   font-size: 18px;
@@ -102,7 +139,8 @@ p {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-left: 40px;
   transition: background-color 0.3s;
 }
 
@@ -191,6 +229,7 @@ p {
 .create-user-container .create-user-button:hover {
   background-color: #138496;
 }
+
 
 .create-user-container .start-session-button {
   padding: 10px 20px;

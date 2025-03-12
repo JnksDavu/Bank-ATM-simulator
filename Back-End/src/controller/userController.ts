@@ -39,3 +39,23 @@ export const createUser = async (req: Request, res: Response) => {
     return res.status(500).json({ message: "Erro ao criar usuário!" });
   }
 };
+
+
+// Função para verificar se o nome de usuário existe
+export const checkUserExists = async (req: Request, res: Response) => {
+  const { username } = req.params;
+
+  try {
+    const db = await openDb();
+    const user = await db.get("SELECT * FROM users WHERE username = ?", [username]);
+
+    if (user) {
+      return res.json({ exists: true });
+    } else {
+      return res.json({ exists: false });
+    }
+  } catch (error) {
+    console.error("Erro ao verificar usuário:", error);
+    return res.status(500).json({ error: "Erro interno do servidor" });
+  }
+};
