@@ -4,7 +4,6 @@ Simulador de acesso a caixa eletrônica de banco
 # Como Executar
 1- Primeiramente, é nescessário ter instalado o Node, caso não tenha, a instalação é muito simples
 basta acessar o link https://nodejs.org/en/download e seguir as instruções.
-[alt text](image.png)
 
 2- Após clonar o repositório rodar os seguintes comandos no terminal:
 
