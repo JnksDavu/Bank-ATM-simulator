@@ -12,6 +12,6 @@ basta acessar o link https://nodejs.org/en/download e seguir as instruções.
 - cd ..\..\Back-End
 - npm install
 - npm run dev
-
+aa
 
 ![image](https://github.com/user-attachments/assets/ca2795ec-8a81-461d-9f9c-6137bcf05533)
